@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <p> Tên<p>
+    <input type="text" name="Tên" id="userName">
+    <p> Năm Sinh<p>
+    <input type="text" name="Năm Sinh" id="userDate">
+
+
+  <button id="button1">Add</button>
+
+<table>
+  <thread>
+    <tr>
+    <th>Mã số</th>
+    <th> Tên</th>
+    <th> Năm Sinh</th>
+    <th> Huyết áp</th>
+    <th> Oxy</th>
+    <th> Nhiệt độ</th>
+  </tr>
+  </thread>
+</table>
+  <script type="text/javascript" src="jquery-3.3.1.min.js">  </script>
+  <script>
+
+  var userID = 0;
+  $("#button1").click(function(){
+    var userName = $("input#userName").val();
+    var userDate = $("input#userDate").val();
+    var userHG = 3;
+    var userOxy = 6;
+    var userTemp = 32;
+  firebase.database().ref('user/'+ userID).set({
+    username: userName,
+    userdate: userDate,
+    useroxy: userOxy,
+    usertemp: userTemp,
+    userhg: userHG
+  });
+    userID++;
+    $("table").append("<tr><td>" + userID + "</td><td>" + userName + "</td><td>" + userDate + "</td><td>" + userHG + "</td><td>" + userOxy + "</td><td>"+userTemp+"</td></tr>");
+
+  });
+
+
+</script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAkoyjAfwDopxj8Vli7uYXjtloZLXw0sPs",
+      authDomain: "botucodefight.firebaseapp.com",
+      databaseURL: "https://botucodefight.firebaseio.com",
+      projectId: "botucodefight",
+      storageBucket: "botucodefight.appspot.com",
+      messagingSenderId: "464866420286"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+</body>
+</html>
